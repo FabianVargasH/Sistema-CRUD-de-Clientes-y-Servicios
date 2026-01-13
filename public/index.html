@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Servicios</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sistema de Gestión de Servicios</h1>
+            <div class="stats">
+                <span id="serviceCount">0 servicios registrados</span>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('ingreso')">
+                ➕ Ingreso de Datos
+            </button>
+            <button class="tab-btn" onclick="showTab('consultas')">
+                🔍 Consultas
+            </button>
+        </div>
+
+        <!-- TAB INGRESO -->
+        <div id="tab-ingreso" class="tab-content active">
+            <div class="form-card">
+                <div class="form-section">
+                    <h2>👤 Información General</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Nombre *</label>
+                            <input type="text" id="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label>ID Tipo *</label>
+                            <select id="idTipo">
+                                <option value="cedula">Cédula</option>
+                                <option value="pasaporte">Pasaporte</option>
+                                <option value="dimex">DIMEX</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>ID Número *</label>
+                            <input type="text" id="idNumero" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Correo Electrónico *</label>
+                            <input type="email" id="correo" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono *</label>
+                            <input type="tel" id="telefono" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Tipo de Servicio *</label>
+                            <input type="text" id="tipoServicio" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>📋 Descripción del Servicio</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Nombre del Servicio *</label>
+                            <input type="text" id="nombreServicio" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Responsable *</label>
+                            <input type="text" id="responsable" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Actividades *</label>
+                            <textarea id="actividades" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Tiempo de Cumplimiento *</label>
+                            <input type="text" id="tiempoCumplimiento" placeholder="ej: 5 días" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>💰 Información de Pago</h2>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Monto del Servicio *</label>
+                            <input type="number" id="montoServicio" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Forma de Pago *</label>
+                            <select id="formaPago">
+                                <option value="efectivo">Efectivo</option>
+                                <option value="tarjeta">Tarjeta</option>
+                                <option value="transferencia">Transferencia</option>
+                                <option value="sinpe">SINPE Móvil</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Ingreso de Bonos</label>
+                            <input type="number" id="bonos" step="0.01" placeholder="0.00">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-primary" onclick="guardarServicio()">
+                    Registrar Servicio
+                </button>
+            </div>
+        </div>
+
+        <!-- TAB CONSULTAS -->
+        <div id="tab-consultas" class="tab-content">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Buscar por nombre, ID o servicio..." onkeyup="buscarServicios()">
+            </div>
+
+            <div id="serviciosList">
+                <div class="loading">Cargando servicios...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+# Dependencias
+node_modules/
+
+# Base de datos local
+database.sqlite
+*.db
+
+# Archivos de configuración local
+.env
+
+# Archivos de compilación
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
