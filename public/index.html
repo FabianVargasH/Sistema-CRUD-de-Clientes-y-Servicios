@@ -9,26 +9,27 @@
 <body>
     <div class="container">
         <header>
-            <h1>Sistema de Gestión de Servicios</h1>
+            <div class="header-title">
+                <img src="./LTC logo.jpeg" alt="Logo" class="header-logo">
+                <h1>Gestión de Servicios LTC</h1>
+            </div>
             <div class="stats">
                 <span id="serviceCount">0 servicios registrados</span>
             </div>
         </header>
-
         <div class="tabs">
             <button class="tab-btn active" onclick="showTab('ingreso')">
-                ➕ Ingreso de Datos
+                Ingreso de Datos
             </button>
             <button class="tab-btn" onclick="showTab('consultas')">
-                🔍 Consultas
+                Consultas
             </button>
         </div>
-
         <!-- TAB INGRESO -->
         <div id="tab-ingreso" class="tab-content active">
             <div class="form-card">
                 <div class="form-section">
-                    <h2>👤 Información General</h2>
+                    <h2>Información General</h2>
                     <div class="form-grid">
                         <div class="form-group">
                             <label>Nombre *</label>
@@ -54,15 +55,21 @@
                             <label>Teléfono *</label>
                             <input type="tel" id="telefono" required>
                         </div>
-                        <div class="form-group full-width">
-                            <label>Tipo de Servicio *</label>
-                            <input type="text" id="tipoServicio" required>
+                        <div class="form-group">
+                            <label>Descripción del Servicio *</label> 
+                                <select id="tipoServicio">
+                                    <option value="" disabled selected hidden>Seleccione una opción</option>
+                                    <option value="contable">Contable</option>
+                                    <option value="tributario">Tributario</option>
+                                    <option value="legal">Legal</option>
+                                    <option value="notarial">Notarial</option>
+                                    <option value="criminologico">Criminológico</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-
                 <div class="form-section">
-                    <h2>📋 Descripción del Servicio</h2>
+                    <h2>Descripción del Servicio</h2>
                     <div class="form-grid">
                         <div class="form-group">
                             <label>Nombre del Servicio *</label>
@@ -78,13 +85,13 @@
                         </div>
                         <div class="form-group">
                             <label>Tiempo de Cumplimiento *</label>
-                            <input type="text" id="tiempoCumplimiento" placeholder="ej: 5 días" required>
+                            <input type="date" id="tiempoCumplimiento" placeholder="ej: 5 días" required>
                         </div>
                     </div>
                 </div>
 
                 <div class="form-section">
-                    <h2>💰 Información de Pago</h2>
+                    <h2>Información de Pago</h2>
                     <div class="form-grid">
                         <div class="form-group">
                             <label>Monto del Servicio *</label>
@@ -100,22 +107,32 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Ingreso de Bonos</label>
+                            <label>Abonos</label> <!-- ========= Abonos================= -->
                             <input type="number" id="bonos" step="0.01" placeholder="0.00">
                         </div>
                     </div>
                 </div>
-
                 <button class="btn-primary" onclick="guardarServicio()">
                     Registrar Servicio
                 </button>
             </div>
         </div>
-
         <!-- TAB CONSULTAS -->
         <div id="tab-consultas" class="tab-content">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Buscar por nombre, ID o servicio..." onkeyup="buscarServicios()">
+                <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                    <input type="text" id="searchInput" placeholder="Buscar por nombre, ID o servicio..." onkeyup="buscarServicios()" style="flex: 1; min-width: 250px;">
+                    <select id="filtroTiempo" onchange="aplicarFiltroTiempo()" class="filtro-tiempo">
+                        <option value="" >Filtrar por vencimiento</option>
+                        <option value="vencidos">Vencidos</option>
+                        <option value="1-semana">Vence en 1 semana</option>
+                        <option value="1-mes">Más de 1 semana</option>
+                        <option value="mas-1-mes">Más de 1 mes</option>
+                    </select>
+                    <button class="btn-export" onclick="exportarAPDF()">
+                        Exportar a PDF
+                    </button>
+                </div>
             </div>
 
             <div id="serviciosList">
@@ -123,7 +140,35 @@
             </div>
         </div>
     </div>
-
+        <!-- Modal para agregar bono -->
+    <div id="modalBono" class="modal-bono">
+        <div class="modal-bono-content">
+            <div class="modal-bono-header">
+                <h3>Agregar Abono</h3>
+                <button class="btn-close" onclick="cerrarModalBono()">&times;</button>
+            </div>
+            
+            <div class="modal-bono-info">
+                <p><strong>Cliente:</strong> <span id="bonoNombreCliente"></span></p>
+                <p><strong>Saldo actual:</strong> <span id="bonoSaldoActual" class="saldo-actual"></span></p>
+            </div>
+            
+            <div class="bono-form-group">
+                <label for="montoBono">Monto del abono ($)</label>
+                <div class="bono-input-wrapper">
+                    <span>$</span>
+                    <input type="number" id="montoBono" class="bono-input" placeholder="0.00" step="0.01" min="0.01" required>
+                </div>
+            </div>
+            
+            <div class="bono-actions">
+                <button class="btn-bono-cancel" onclick="cerrarModalBono()">Cancelar</button>
+                <button class="btn-bono-confirm" onclick="procesarBono()">Agregar Abono</button>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

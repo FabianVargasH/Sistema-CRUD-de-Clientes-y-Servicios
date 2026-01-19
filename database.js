@@ -1,9 +1,16 @@
 const Database = require('better-sqlite3');
 const path = require('path');
+const { app } = require('electron');
 
-const dbPath = path.join(__dirname, 'database.sqlite');
+// Usar la carpeta de datos de usuario de la aplicación
+const userDataPath = app ? app.getPath('userData') : __dirname;
+const dbPath = path.join(userDataPath, 'database.sqlite');
+
+console.log('Ruta de la base de datos:', dbPath);
+
 const db = new Database(dbPath);
 
+// Crear tabla si no existe
 db.exec(`
   CREATE TABLE IF NOT EXISTS servicios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

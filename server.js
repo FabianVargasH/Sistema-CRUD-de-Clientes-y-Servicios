@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -6,11 +5,11 @@ const path = require('path');
 const db = require('./database');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Obtencion de todos los servicios
 app.get('/api/servicios', (req, res) => {
@@ -136,15 +135,27 @@ app.get('/api/servicios/buscar/:termino', (req, res) => {
     const termino = `%${req.params.termino}%`;
     const servicios = db.prepare(`
       SELECT * FROM servicios 
-      WHERE nombre LIKE ? OR id_numero LIKE ? OR nombre_servicio LIKE ?
+      WHERE nombre LIKE ? 
+         OR id_numero LIKE ? 
+         OR nombre_servicio LIKE ?
+         OR tipo_servicio LIKE ?
       ORDER BY created_at DESC
-    `).all(termino, termino, termino);
+    `).all(termino, termino, termino, termino);
     
     res.json(servicios);
   } catch (err) {
     console.error('Error en búsqueda:', err);
     res.status(500).json({ error: 'Error en búsqueda' });
   }
+});
+// Ruta de salud para verificar que el servidor funciona
+app.get('/health', (req, res) => {
+  res.json({ status: 'OK', message: 'Servidor funcionando' });
+});
+
+// Ruta catch-all para servir la aplicación SPA
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 let server;
