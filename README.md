@@ -334,7 +334,7 @@ Este es un proyecto privado desarrollado para uso interno.
 
 ## Licencia
 
-ISC License
+**GNU GPL v3.0**
 
 ## Autor
 Desarrollador: Fabián Vargas Hidalgo
