@@ -13,6 +13,24 @@ Sistema de escritorio desarrollado en Electron para la gestión integral de serv
 
 Aplicación de escritorio diseñada para un negocio de servicios profesionales (contables, tributarios, legales, notariales y criminológicos) que necesita gestionar clientes, servicios, pagos y seguimiento de tareas de manera eficiente y sin conexión a internet.
 
+## Imagenes de la aplicación
+
+### Imagen 1
+<img width="1861" height="1038" alt="Screenshot 2026-01-19 131040" src="https://github.com/user-attachments/assets/2b7ad9d6-1d0c-477e-846d-c0819085beab" />
+
+### Imagen 2
+<img width="1846" height="955" alt="Screenshot 2026-01-19 131055" src="https://github.com/user-attachments/assets/b8d09c2e-ae96-4951-8848-43f4ebda411c" />
+
+### Imagen 3
+<img width="1898" height="953" alt="Screenshot 2026-01-19 131113" src="https://github.com/user-attachments/assets/1820797d-1138-420c-8ac3-2e2ae634169c" />
+
+### Imagen 4
+<img width="1858" height="968" alt="Screenshot 2026-01-19 131253" src="https://github.com/user-attachments/assets/cfdf4998-bfb5-47a3-beb6-acf5af340ca2" />
+
+### Imagen 5
+<img width="1828" height="976" alt="Screenshot 2026-01-19 131305" src="https://github.com/user-attachments/assets/f39ed823-327a-4fe1-b254-050e0a75c477" />
+
+
 ## Características Principales
 
 ### Gestión de Servicios
