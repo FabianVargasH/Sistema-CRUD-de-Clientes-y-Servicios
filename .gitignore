@@ -9,7 +9,7 @@ dist/
 release/
 out/
 
-# Base de datos (cada usuario tendrá la suya)
+# Base de datos 
 database.sqlite
 
 # Archivos del sistema

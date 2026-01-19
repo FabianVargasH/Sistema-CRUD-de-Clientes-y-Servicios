@@ -576,7 +576,7 @@ function restaurarBotonGuardar() {
     btnGuardar.textContent = 'Registrar Servicio';
     btnGuardar.onclick = guardarServicio;
 }
-// Variables globales para el modal de bono=========================================================
+// Variables globales para el modal de bono
 let servicioIdActual = null;
 let saldoPendienteActual = 0;
 
@@ -686,7 +686,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-//----------------------------------------
+
 function formatearNumero(numero) {
     const num = parseFloat(numero);
     if (isNaN(num)) return "0.00";

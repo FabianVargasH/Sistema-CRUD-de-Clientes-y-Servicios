@@ -10,7 +10,7 @@ console.log('Ruta de la base de datos:', dbPath);
 
 const db = new Database(dbPath);
 
-// Crear tabla si no existe
+
 db.exec(`
   CREATE TABLE IF NOT EXISTS servicios (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
