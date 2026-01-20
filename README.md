@@ -263,6 +263,7 @@ npx electron-rebuild
 **Solución:** 
 ```javascript
 app.use(express.static(path.join(__dirname, 'public')));
+```
 
 #### **5. Problema: Errores de sintaxis JavaScript**
 **Causa:** Funciones duplicadas y llaves faltantes en `script.js`.
@@ -284,9 +285,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 - Inclusión explícita en `files` del build
 - Configuración de `extraResources`
 - Especificación de ruta en `win.icon`
-
+  
 ```
-
+```
 ## Uso de la Aplicación
 
 ### Para el Usuario Final
